@@ -40,7 +40,7 @@ Completed the README and some user stories
 <a name="Usage"></a>
 ## 5. Usage
 
-<a name="User Stories"></a>
+<a name="user-stories"></a>
 ## 6. User Stories
 
 * As a player, wanting to research my own stats, I want to look them up quickly. Should work by providing a name/server combination passed as arguements through the commandline
