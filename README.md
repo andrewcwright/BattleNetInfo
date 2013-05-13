@@ -18,7 +18,7 @@ This is a project for the Nashville Software School. My objective is to create a
 <a name="purpose"></a>
 ## 1. Purpose
 
-Battle.net is a server used by Blizzard Entertainment to host video games and provide information about the players. This application is designed to access their API and store/display that information. The user will be able to pull pertinent information on a character from any server, and have it displayed in the shell. The idea here is that one can find useful information about someone they encounter in the game quickly, and use it to their advantage. I will also implement the ability to track a player's progression through the course of the game, displaying the information with ASCII characters resembling a graph. This will provide an easy way to figure out if certain content has been completed in the game without having to navigate through several web pages. 
+Battle.net is a server used by Blizzard Entertainment to host video games and provide information about the players. This application is designed to access the Battle.net API and store/display that information. The user will be able to pull pertinent information on a character from any server, and have it displayed in the shell. The idea here is that one can find useful information about someone they encounter in the game quickly, and use it to their advantage. I will also implement the ability to track a player's progression through the course of the game, displaying the information with ASCII characters resembling a graph. This will provide an easy way to figure out if certain content has been completed in the game without having to navigate through several web pages. 
 
 <a name="project-status"></a>
 ## 2. Project Status
