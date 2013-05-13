@@ -31,6 +31,8 @@ I want to store the data locally
   - this will take all the JSON data and store it locally with Active Record
   - user runs `bni list` to see a list of currently stored characters
 
+<hr />
+
 As a player<br />
 In order to figure out how much content I have cleared<br />
 I want to see a graph displaying completed objectives in the game
