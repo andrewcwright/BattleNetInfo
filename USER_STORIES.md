@@ -11,6 +11,7 @@ I want to be able to access my statistics quickly
   - program will print a list of available servers when prompting the player for one.
   - user runs `bni <character name> <server>` to pass them directly
   - user is then shown a list of statistics pulled down from the battle.net API
+  - use regex to normalize server input
 
 <hr />
 
