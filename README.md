@@ -9,7 +9,6 @@ This is a project for the Nashville Software School. My objective is to create a
 3. [Todo List](#todo-list)
 4. [Features](#features)
 5. [Usage](#usage)
-6. [User Stories](#user-stories)
 
 [Acknowledgements](#acknowledgements)
 
@@ -24,7 +23,7 @@ Battle.net is a server used by Blizzard Entertainment to host video games and pr
 <a name="project-status"></a>
 ## 2. Project Status
 
-Completed the README and some user stories
+This project is in the planning stages.
 
 <a name="todo-list"></a>
 ## 3. Todo List
@@ -40,10 +39,13 @@ Completed the README and some user stories
 <a name="Usage"></a>
 ## 5. Usage
 
-<a name="user-stories"></a>
-## 6. User Stories
+<a name="license"></a>
+## License
 
-* As a player, wanting to research my own stats, I want to look them up quickly. Should work by providing a name/server combination passed as arguements through the commandline
-* As a player, wanting to discover information about another player, I want to look them up. Should work for any player, on any server.
-* As a player, wanting to figure out how much content I have cleared, I want to see a graph displaying completed objectives in the game. Their should be a series of rows displaying the name of the objective, and ASCII characters displaying the status of completion. This information will be stored for future use.
-* As a player, wanting to figure out my progression through the game over time, I want to see a visual representation of my progress over time. This could be represented as a line of characters, with different characters representing the newly completed tasks. It can pull data from the API, and then compare it to the existing data stoed locally. Different character will be used to display previous/newly completed tasks.
+Copyright (c) 2013 Andrew Wright
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
