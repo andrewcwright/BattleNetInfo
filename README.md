@@ -23,7 +23,7 @@ Battle.net is a server used by Blizzard Entertainment to host video games and pr
 <a name="project-status"></a>
 ## 2. Project Status
 
-This project is in the planning stages.
+Finished initial functionality of being bale to find basic information on any player.
 
 <a name="todo-list"></a>
 ## 3. Todo List
@@ -35,9 +35,14 @@ This project is in the planning stages.
 
 <a name="Features"></a>
 ## 4. Features
+* Lookup a character on any server and get some basic information printed to the screen
 
 <a name="Usage"></a>
 ## 5. Usage
+
+* From BattleNetInfo directory type `ruby bni.rb <character> <server>`
+* Capitalize the first letter in character name
+* Server is all lowercase
 
 <a name="license"></a>
 ## License
