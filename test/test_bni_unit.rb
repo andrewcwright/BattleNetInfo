@@ -1,5 +1,4 @@
-require 'test/unit'
-require './bni.rb'
+require 'test_helper'
 
 class TestBNIUnit < Test::Unit::TestCase
 
