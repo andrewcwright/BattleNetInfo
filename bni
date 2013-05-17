@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+require_relative 'bootstrap_ar'
+require_relative 'character'
+
+# ARGV = [add, foo]
+command = ARGV[0]
+
+if command == "add"
+  user_name = ARGV[1]
+  user = User.new(name: user_name)
+  if user.save
+    puts "Success!"
+  else
+    puts "Failure: #{user.errors.full_messages.join(", ")}"
+  end
+# elsif command == "list"
+#   projects = Project.all
+#   projects.each_with_index do |project, i|
+#     puts "#{i+1}. #{project.name}"
+#   end
+# elsif command == "remove"
+#   project_name = ARGV[1]
+#   matching_projects = Project.where(name: project_name).all
+#   matching_projects.each do |project|
+#     project.destroy
+else
+  name = ARGV[0]
+  server = ARGV[1]
+  output = Character.new(name, server)
+  output.print_character
+end
