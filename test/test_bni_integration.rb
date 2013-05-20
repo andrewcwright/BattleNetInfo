@@ -10,11 +10,10 @@ Battlegroup: Nightfall
 Class: 7
 Race: 3
 Gender: 0
-Battlegroup: Nightfall
 Level: 90
 Achievement Points: 8320
     block
-    assert_equal(block, `ruby models/bni.rb andose kelthuzad`)
+    assert_equal(block, `./bni Andose kelthuzad`)
   end
 
 end

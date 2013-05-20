@@ -3,4 +3,9 @@ require_relative '../bootstrap_ar'
 
 #other test prep stuff goes here
 
-Project.destroy_all
+module DatabaseCleaner
+  def before_setup
+    super
+    Character.destroy_all
+  end
+end
