@@ -8,19 +8,19 @@ command = ARGV[0]
 character_name = ARGV[1]
 character_server = ARGV[2]
 
-params = { command: command, character: { name: character_name } }
+params = {
+  command: command,
+  character: {
+    name: character_name,
+    server: character_server
+  }
+}
 
 controller = BattleNetInfoController.new(params)
 routes = { "add" => :create, "list" => :index, "remove" => :destroy }
 
 if route = routes[command]
   controller.send route
-# if command == "add"
-#   BattleNetInfoController.add
-# elsif command == "list"
-#   BattleNetInfoController.index
-# elsif command == "remove"
-#   BattleNetInfoController.destroy
 else
   name = ARGV[0]
   server = ARGV[1]

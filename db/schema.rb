@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(:version => 20130515112300) do
 
   create_table "characters", :force => true do |t|
     t.string "name"
+    t.string "server"
   end
 
 end
