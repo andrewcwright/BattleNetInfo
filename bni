@@ -5,26 +5,22 @@ require_relative 'GetCharacter'
 
 # ARGV = [add, foo]
 command = ARGV[0]
+character_name = ARGV[1]
+character_server = ARGV[2]
 
-if command == "add"
-  character_name = ARGV[1]
-  character = Character.new(name: character_name)
-  if character.save
-    puts "Success!"
-  else
-    puts "Failure: #{character.errors.full_messages.join(", ")}"
-  end
-elsif command == "list"
-  characters = Character.all
-  characters.each_with_index do |character, i|
-    puts "#{i+1}. #{character.name}"
-  end
-elsif command == "remove"
-  project_name = ARGV[1]
-  matching_projects = Project.where(name: project_name).all
-  matching_projects.each do |project|
-    project.destroy
-  end
+params = { command: command, character: { name: character_name } }
+
+controller = BattleNetInfoController.new(params)
+routes = { "add" => :create, "list" => :index, "remove" => :destroy }
+
+if route = routes[command]
+  controller.send route
+# if command == "add"
+#   BattleNetInfoController.add
+# elsif command == "list"
+#   BattleNetInfoController.index
+# elsif command == "remove"
+#   BattleNetInfoController.destroy
 else
   name = ARGV[0]
   server = ARGV[1]
