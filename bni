@@ -25,4 +25,5 @@ else
   server = ARGV[1]
   output = BattleNetAPI.new(name, server)
   output.print_character
+  output.get_ToT_progression
 end

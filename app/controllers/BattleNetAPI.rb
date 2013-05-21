@@ -55,4 +55,26 @@ class BattleNetAPI
     puts char_info
   end
 
+  def get_progression
+    url = "http://us.battle.net/api/wow/character/#{@server}/#{@name}?fields=progression"
+    uri = URI.parse(url)
+    http = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Get.new("/api/wow/character/#{@server}/#{@name}?fields=progression")
+    response = http.request(request)
+    json_character = response.body
+    parsed_character = JSON.parse(json_character)
+  end
+
+  def get_ToT_progression
+    progression_data = get_progression['progression']['raids']
+    tot_progression = {}
+    progression_entries = progression_data.length
+    progression_entries.times do |index|
+      if progression_data[index]['name'] == 'Throne of Thunder'
+        tot_progression = progression_data[index]
+      end
+    end
+    puts tot_progression
+  end
+
 end
