@@ -3,9 +3,10 @@ require 'json'
 
 class BattleNetAPI
 
-  def initialize name, server
+  def initialize name, server, progression=nil
     @name = name
     @server = server
+    @progression = progression
   end
 
   def get_character
@@ -65,16 +66,20 @@ class BattleNetAPI
     parsed_character = JSON.parse(json_character)
   end
 
-  def get_ToT_progression
+  def format_progression
     progression_data = get_progression['progression']['raids']
     tot_progression = {}
     progression_entries = progression_data.length
     progression_entries.times do |index|
-      if progression_data[index]['name'] == 'Throne of Thunder'
+      if progression_data[index]['name'] == @progression
         tot_progression = progression_data[index]
       end
     end
-    puts tot_progression
+    tot_progression
+  end
+
+  def print_progression
+    puts format_progression
   end
 
 end

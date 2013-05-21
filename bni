@@ -6,17 +6,25 @@ require_relative 'bootstrap_ar'
 command = ARGV[0]
 character_name = ARGV[1]
 character_server = ARGV[2]
+character_progression = ARGV[3]
 
 params = {
   command: command,
   character: {
     name: character_name,
-    server: character_server
+    server: character_server,
+    progression: character_progression
   }
 }
 
 controller = BattleNetInfoController.new(params)
-routes = { "add" => :create, "list" => :index, "remove" => :destroy }
+
+routes = {
+  "add" => :create,
+  "list" => :index,
+  "remove" => :destroy,
+  "progression" => :progression
+}
 
 if route = routes[command]
   controller.send route
@@ -25,5 +33,5 @@ else
   server = ARGV[1]
   output = BattleNetAPI.new(name, server)
   output.print_character
-  output.get_ToT_progression
+  output.print_ToT_progression
 end

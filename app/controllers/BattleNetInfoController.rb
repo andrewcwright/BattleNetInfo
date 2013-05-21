@@ -33,4 +33,13 @@ class BattleNetInfoController
     end
   end
 
+  def progression
+    name = params[:character][:name]
+    server = params[:character][:server]
+    progression = params[:character][:progression]
+    battle_net_api = BattleNetAPI.new(name, server, progression)
+    progression_data = battle_net_api.format_progression
+    puts progression_data
+  end
+
 end
