@@ -14,8 +14,15 @@
 ActiveRecord::Schema.define(:version => 20130515112300) do
 
   create_table "characters", :force => true do |t|
-    t.string "name"
-    t.string "server"
+    t.integer "lastModified"
+    t.string  "name"
+    t.string  "realm"
+    t.string  "battlegroup"
+    t.integer "character_class"
+    t.integer "race"
+    t.integer "gender"
+    t.integer "level"
+    t.integer "achievementPoints"
   end
 
 end

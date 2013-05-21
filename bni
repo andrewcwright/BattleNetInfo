@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 require_relative 'bootstrap_ar'
-require_relative 'GetCharacter'
 
 # ARGV = [add, foo]
 command = ARGV[0]
@@ -24,6 +23,6 @@ if route = routes[command]
 else
   name = ARGV[0]
   server = ARGV[1]
-  output = GetCharacter.new(name, server)
+  output = BattleNetAPI.new(name, server)
   output.print_character
 end

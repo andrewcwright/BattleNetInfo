@@ -13,7 +13,12 @@ class BattleNetInfoController
   end
 
   def create
-    character = Character.new(params[:character])
+    name = params[:character][:name]
+    server = params[:character][:server]
+    battle_net_api = BattleNetAPI.new(name, server)
+    character_data = battle_net_api.format_character
+    puts character_data
+    character = Character.new(character_data)
     if character.save
       puts "Success!"
     else
@@ -22,9 +27,9 @@ class BattleNetInfoController
   end
 
   def destroy
-    matching_projects = Project.where(name: params[:character][:name]).all
-    matching_projects.each do |project|
-      project.destroy
+    matching_characters = Character.where(name: params[:character][:name]).all
+    matching_characters.each do |character|
+      character.destroy
     end
   end
 
