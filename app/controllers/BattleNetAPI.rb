@@ -1,5 +1,6 @@
 require 'net/http'
 require 'json'
+require 'date'
 
 class BattleNetAPI
 
@@ -45,8 +46,8 @@ class BattleNetAPI
   def print_character
     character = format_character
     char_info = ""
-    char_info << "Name: #{character["name"]}\n"
-    char_info << "Realm: #{character["realm"]}\n"
+    char_info << "********** #{character["name"]} **********".center(56)
+    char_info << "\nRealm: #{character["realm"]}\n"
     char_info << "Battlegroup: #{character["battlegroup"]}\n"
     char_info << "Class: #{character["character_class"]}\n"
     char_info << "Race: #{character["race"]}\n"
@@ -79,7 +80,37 @@ class BattleNetAPI
   end
 
   def print_progression
+    progression = format_progression
+    progression_entries = progression['bosses'].length
+    format_progression = ""
+    format_progression << "********** #{progression["name"]} **********".center(56)
+    format_progression << "\n\n"
+    progression_entries.times do |index|
+      format_progression << "#{progression['bosses'][index]['name']}:\n"
+      format_progression << "LFR Kills: #{progression['bosses'][index]['lfrKills']}"
+      if !progression['bosses'][index]['lfrKills'].nil? and progression['bosses'][index]['lfrKills'] > 0
+        format_progression << " - Last Kill: #{time_converter(progression['bosses'][index]['lfrTimestamp'])}"
+      end
+      format_progression << "\nNormal Kills: #{progression['bosses'][index]['normalKills']}"
+      if !progression['bosses'][index]['normalKills'].nil? and progression['bosses'][index]['normalKills'] > 0
+        format_progression << " - Last Kill: #{time_converter(progression['bosses'][index]['normalTimestamp'])}"
+      end
+      format_progression << "\nHeroic Kills: #{progression['bosses'][index]['heroicKills']}"
+      if !progression['bosses'][index]['heroicKills'].nil? and progression['bosses'][index]['heroicKills'] > 0
+        format_progression << " - Last Kill: #{time_converter(progression['bosses'][index]['heroicTimestamp'])}"
+      end
+      format_progression << "\n\n"
+    end
     puts format_progression
   end
+
+  def time_converter time
+    time = time.to_s
+    time = time.chomp("000")
+    time = time.to_i
+    time = Time.at(time).to_datetime
+    time
+  end
+
 
 end

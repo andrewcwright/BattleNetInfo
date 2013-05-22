@@ -31,7 +31,8 @@ if route = routes[command]
 else
   name = ARGV[0]
   server = ARGV[1]
-  output = BattleNetAPI.new(name, server)
+  progression = ARGV[2]
+  output = BattleNetAPI.new(name, server, progression)
   output.print_character
-  output.print_ToT_progression
+  output.print_progression
 end
