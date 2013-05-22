@@ -39,14 +39,13 @@ class BattleNetAPI
     character = get_character
     character['character_class'] = classes[character['character_class']-1]
     character['race'] = races[character['race']]
-    character['gender'] = 0 ? "Male" : "Female"
+    character['gender'] = character['gender'] == 0 ? "Male" : "Female"
     character
   end
-
   def print_character
     character = format_character
     char_info = ""
-    char_info << "********** #{character["name"]} **********".center(56)
+    char_info << "********** #{character["name"]} **********"
     char_info << "\nRealm: #{character["realm"]}\n"
     char_info << "Battlegroup: #{character["battlegroup"]}\n"
     char_info << "Class: #{character["character_class"]}\n"
@@ -112,5 +111,19 @@ class BattleNetAPI
     time
   end
 
+  def num_kills game_mode
+    difficulty = 'lfrKills' if game_mode == 'lfr'
+    difficulty = 'normalKills' if game_mode == 'normal'
+    difficulty = 'heroicKills' if game_mode == 'heroic'
+    progression = format_progression
+    progression_entries = progression['bosses'].length
+    lfr_kills = 0
+    progression_entries.times do |index|
+      if !progression['bosses'][index][difficulty].nil? and progression['bosses'][index][difficulty] > 0
+        lfr_kills += 1 
+      end
+    end
+    lfr_kills
+  end
 
 end

@@ -5,9 +5,9 @@ class CreateCharacters < ActiveRecord::Migration
       t.string :name
       t.string :realm
       t.string :battlegroup
-      t.integer :character_class
-      t.integer :race
-      t.integer :gender
+      t.string :character_class
+      t.string :race
+      t.string :gender
       t.integer :level
       t.integer :achievementPoints
     end

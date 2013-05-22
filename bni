@@ -32,7 +32,7 @@ else
   name = ARGV[0]
   server = ARGV[1]
   progression = ARGV[2]
-  output = BattleNetAPI.new(name, server, progression)
-  output.print_character
-  output.print_progression
+  battle_net_api = BattleNetAPI.new(name, server, progression)
+  battle_net_api.print_character
+  battle_net_api.print_progression unless progression.nil?
 end

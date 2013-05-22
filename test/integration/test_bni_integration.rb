@@ -4,7 +4,7 @@ class TestBNIIntegration < Test::Unit::TestCase
 
   def test_01_output_given_character_and_server
     block = <<-block
-Name: Andose
+********** Andose **********
 Realm: Kel'Thuzad
 Battlegroup: Nightfall
 Class: 7

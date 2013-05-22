@@ -11,18 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130515112300) do
+ActiveRecord::Schema.define(:version => 20130522111500) do
 
   create_table "characters", :force => true do |t|
     t.integer "lastModified"
     t.string  "name"
     t.string  "realm"
     t.string  "battlegroup"
-    t.integer "character_class"
-    t.integer "race"
-    t.integer "gender"
+    t.string  "character_class"
+    t.string  "race"
+    t.string  "gender"
     t.integer "level"
     t.integer "achievementPoints"
+  end
+
+  create_table "progressions", :force => true do |t|
+    t.integer "character_id"
+    t.string  "name"
+    t.integer "lfrBossesKilled"
+    t.integer "normalBossesKilled"
+    t.integer "heroicBossesKilled"
   end
 
 end
