@@ -17,12 +17,12 @@ class TestProgression < MiniTest::Unit::TestCase
     assert_equal 'Dragon Soul', Progression.last.name
   end
 
-  # def test_progression_associates_to_character
-  #   `./bni add Andose kelthuzad`
-  #   `./bni progression Andose kelthuzad "Throne of Thunder"`
-  #   character_id = Character.where(name: "Andose").first.id
-  #   progression_id = Progression.where(name: "Throne of Thunder", character_id: character_id).first.id
-  #   assert_equal character_id, progression_id
-  # end
+  def test_progression_associates_to_character
+    `./bni add Andose kelthuzad`
+    `./bni progression Andose kelthuzad "Throne of Thunder"`
+    character_table_id = Character.where(name: "Andose").last.id
+    progression_table_id = Progression.where(name: "Throne of Thunder").last.character_id
+    assert_equal character_table_id, progression_table_id
+  end
 
 end

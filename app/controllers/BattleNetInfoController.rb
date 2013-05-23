@@ -7,8 +7,14 @@ class BattleNetInfoController
 
   def index
     characters = Character.all
+    progressions = Progression.all
     characters.each_with_index do |character, i|
       puts "#{i+1}. #{character.name}"
+      progressions.each do |progression|
+        if progression.character_id == character.id
+          puts "  * #{progression.name}"
+        end
+      end
     end
   end
 
@@ -51,7 +57,7 @@ class BattleNetInfoController
     if progression_db.save
       puts "Success!"
     else
-      puts "Failure: #{progression.errors.full_messages.join(", ")}"
+      puts "Failure: #{progression_db.errors.full_messages.join(", ")}"
     end
   end
 
