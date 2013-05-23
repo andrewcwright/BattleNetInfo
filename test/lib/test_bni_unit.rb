@@ -1,5 +1,5 @@
 require_relative '../test_helper'
 
-class TestBNIUnit < Test::Unit::TestCase
+class TestBNIUnit < MiniTest::Unit::TestCase
 
 end

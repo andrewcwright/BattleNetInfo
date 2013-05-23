@@ -1,6 +1,6 @@
 require_relative '../test_helper'
 
-class TestAddingCharacter < Minitest::Unit::TestCase
+class TestAddingCharacter < MiniTest::Unit::TestCase
   include DatabaseCleaner
 
   def test_takes_arguements_and_saves_them
