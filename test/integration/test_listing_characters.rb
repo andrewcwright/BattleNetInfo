@@ -10,19 +10,19 @@ class TestListingCharacters < MiniTest::Unit::TestCase
   end
 
   def test_listing_multiple_characters
-    Character.create(name: 'foo')
-    Character.create(name: 'bar')
+    Character.create(name: 'Andose')
+    Character.create(name: 'Jellyxickle')
     actual = `./bni list`
     expected = <<EOS
-1. foo
-2. bar
+1. Andose
+2. Jellyxickle
 EOS
     assert_equal expected, actual
   end
 
   def test_listing_progressions
-    `./bni add Andose kelthuzad`
-    `./bni add Tacoz kelthuzad`
+    Character.create(name: 'Andose', realm: "Kel'Thuzad")
+    Character.create(name: 'Tacoz', realm: "Kel'Thuzad")
     `./bni progression Andose kelthuzad "Throne of Thunder"`
     `./bni progression Andose kelthuzad "Dragon Soul"`
     `./bni progression Tacoz kelthuzad "Throne of Thunder"`

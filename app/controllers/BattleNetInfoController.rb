@@ -40,17 +40,19 @@ class BattleNetInfoController
   end
 
   def progression
-    name = params[:character][:name]
+    character_name = params[:character][:name]
     server = params[:character][:server]
     progression = params[:character][:progression]
-    battle_net_api = BattleNetAPI.new(name, server, progression)
+    battle_net_api = BattleNetAPI.new(character_name, server, progression)
     progression_api_data = battle_net_api.format_progression
+    formatted_character = battle_net_api.format_character
+    formatted_server = formatted_character["realm"]
     progression_data = {
-      "character_id" => Character.where(name: name).first.id,
+      "character_id" => Character.where("name = ? AND realm = ?", character_name, formatted_server ).first.id,
       "name" => progression_api_data["name"],
-      "lfrBossesKilled" => battle_net_api.num_kills("lfr"),
-      "normalBossesKilled" => battle_net_api.num_kills("normal"),
-      "heroicBossesKilled" => battle_net_api.num_kills("heroic")
+      "lfrBossesKilled" => battle_net_api.num_kills('lfr'),
+      "normalBossesKilled" => battle_net_api.num_kills('normal'),
+      "heroicBossesKilled" => battle_net_api.num_kills('heroic')
     }
     progression_db = Progression.new(progression_data)
     puts progression_data

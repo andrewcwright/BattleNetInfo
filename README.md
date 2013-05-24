@@ -28,10 +28,13 @@ Finished initial functionality of being bale to find basic information on any pl
 <a name="todo-list"></a>
 ## 3. Todo List
 
-* Research WoW api
-* Install/research rails and active record
-* Write initial tests
-* Write initial code to pull data from the api and print it to the screen
+* Update README, Goals, Stories
+* Demo
+* Lessons Learned
+* Add functionality to track change over time in progression
+* Add more information to character printing
+* Add error prevention/recovery
+* Improve remove functionality
 
 <a name="Features"></a>
 ## 4. Features

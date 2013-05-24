@@ -42,6 +42,7 @@ class BattleNetAPI
     character['gender'] = character['gender'] == 0 ? "Male" : "Female"
     character
   end
+  
   def print_character
     character = format_character
     char_info = ""
@@ -82,7 +83,7 @@ class BattleNetAPI
     progression = format_progression
     progression_entries = progression['bosses'].length
     format_progression = ""
-    format_progression << "********** #{progression["name"]} **********".center(56)
+    format_progression << "********** #{progression["name"]} **********"
     format_progression << "\n\n"
     progression_entries.times do |index|
       format_progression << "#{progression['bosses'][index]['name']}:\n"
