@@ -34,9 +34,21 @@ class BattleNetInfoController
   end
 
   def destroy
-    matching_characters = Character.where(name: @name).all
-    matching_characters.each do |character|
-      character.destroy
+    battle_net_api = BattleNetAPI.new(@name, @realm, @progression)
+    formatted_character = battle_net_api.format_character
+    formatted_realm = formatted_character["realm"]
+    character_id = Character.where(name: @name, realm: formatted_realm).first.id
+    if Character.where(name: @name, realm: formatted_realm).exists?
+      matching_characters = Character.where(name: @name, realm: formatted_realm).all
+      matching_characters.each do |character|
+        character.destroy
+      end
+    end
+    if Progression.where(character_id: character_id).exists?
+      matching_progressions = Progression.where(character_id: character_id).all
+      matching_progressions.each do |progression|
+        progression.destroy
+      end
     end
   end
 
