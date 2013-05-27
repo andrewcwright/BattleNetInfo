@@ -121,7 +121,7 @@ class BattleNetAPI
     lfr_kills = 0
     progression_entries.times do |index|
       if !progression['bosses'][index][difficulty].nil? and progression['bosses'][index][difficulty] > 0
-        lfr_kills += 1 
+        lfr_kills += 1
       end
     end
     lfr_kills

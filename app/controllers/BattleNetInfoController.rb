@@ -3,6 +3,9 @@ class BattleNetInfoController
 
   def initialize params
     @params = params
+    @name = params[:character][:name]
+    @realm = params[:character][:server]
+    @progression = params[:character][:progression]
   end
 
   def index
@@ -19,9 +22,7 @@ class BattleNetInfoController
   end
 
   def create
-    name = params[:character][:name]
-    server = params[:character][:server]
-    battle_net_api = BattleNetAPI.new(name, server)
+    battle_net_api = BattleNetAPI.new(@name, @realm)
     character_data = battle_net_api.format_character
     puts character_data
     character = Character.new(character_data)
@@ -33,38 +34,35 @@ class BattleNetInfoController
   end
 
   def destroy
-    matching_characters = Character.where(name: params[:character][:name]).all
+    matching_characters = Character.where(name: @name).all
     matching_characters.each do |character|
       character.destroy
     end
   end
 
   def progression
-    character_name = params[:character][:name]
-    server = params[:character][:server]
-    progression = params[:character][:progression]
-    battle_net_api = BattleNetAPI.new(character_name, server, progression)
-    progression_api_data = battle_net_api.format_progression
+    battle_net_api = BattleNetAPI.new(@name, @realm, @progression)
+    formatted_progression = battle_net_api.format_progression
     formatted_character = battle_net_api.format_character
     formatted_realm = formatted_character["realm"]
-    if new_kills and Character.where(name: character_name, realm: formatted_realm).exists?
-      this_character_id = Character.where(name: character_name, realm: formatted_realm).first.id
+    if new_kills and Character.where(name: @name, realm: formatted_realm).exists?
+      character_id = Character.where(name: @name, realm: formatted_realm).first.id
       new_lfr_kills = battle_net_api.num_kills('lfr')
-      old_lfr_kills = Progression.where(name: character_name, character_id: this_character_id).first.lfrBossesKilled
+      old_lfr_kills = Progression.where(name: @progression, character_id: character_id).first.lfrBossesKilled
       new_normal_kills = battle_net_api.num_kills('normal')
-      old_normal_kills = Progression.where(name: character_name, character_id: this_character_id).first.normalBossesKilled
+      old_normal_kills = Progression.where(name: @progression, character_id: character_id).first.normalBossesKilled
       new_heroic_kills = battle_net_api.num_kills('heroic')
-      old_heroic_kills = Progression.where(name: character_name, character_id: this_character_id).first.heroicBossesKilled
-      puts "Grats! You have killed #{new_lfr_kills - old_lfr_kills} new bosses in LFR"
-      puts "Grats! You have killed #{new_normal_kills - old_normal_kills} new bosses in normal"
-      puts "Grats! You have killed #{new_heroic_kills - old_heroic_kills} new bosses in heroic"
-      Progression.where(name: character_name, character_id: this_character_id).first.destroy
+      old_heroic_kills = Progression.where(name: @progression, character_id: character_id).first.heroicBossesKilled
+      puts "You have killed #{new_lfr_kills - old_lfr_kills} new bosses in LFR"
+      puts "You have killed #{new_normal_kills - old_normal_kills} new bosses in normal"
+      puts "You have killed #{new_heroic_kills - old_heroic_kills} new bosses in heroic"
+      Progression.where(name: @progression, character_id: character_id).first.destroy
     else
       puts "Sorry! You have not killed any new bosses, QQ"
     end
     progression_data = {
-      "character_id" => Character.where("name = ? AND realm = ?", character_name, formatted_realm).first.id,
-      "name" => progression_api_data["name"],
+      "character_id" => Character.where("name = ? AND realm = ?", @name, formatted_realm).first.id,
+      "name" => formatted_progression["name"],
       "lfrBossesKilled" => battle_net_api.num_kills('lfr'),
       "normalBossesKilled" => battle_net_api.num_kills('normal'),
       "heroicBossesKilled" => battle_net_api.num_kills('heroic')
@@ -79,21 +77,18 @@ class BattleNetInfoController
   end
 
   def new_kills
-    character_name = params[:character][:name]
-    server = params[:character][:server]
-    progression = params[:character][:progression]
-    battle_net_api = BattleNetAPI.new(character_name, server, progression)
-    progression_api_data = battle_net_api.format_progression
+    battle_net_api = BattleNetAPI.new(@name, @realm, @progression)
+    formatted_progression = battle_net_api.format_progression
     formatted_character = battle_net_api.format_character
     formatted_realm = formatted_character["realm"]
-    if Character.where(name: character_name, realm: formatted_realm).exists?
-      this_character_id = Character.where(name: character_name, realm: formatted_realm).first.id
-      if Progression.where(name: character_name, character_id: this_character_id).exists?
-        if battle_net_api.num_kills('lfr') > Progression.where(name: character_name, character_id: this_character_id).first.lfrBossesKilled
+    if Character.where(name: @name, realm: formatted_realm).exists?
+      character_id = Character.where(name: @name, realm: formatted_realm).first.id
+      if Progression.where(name: @progression, character_id: character_id).exists?
+        if battle_net_api.num_kills('lfr') > Progression.where(name: @progression, character_id: character_id).first.lfrBossesKilled
           return true
-        elsif battle_net_api.num_kills('normal') > Progression.where(name: character_name, character_id: this_character_id).first.normalBossesKilled
+        elsif battle_net_api.num_kills('normal') > Progression.where(name: @progression, character_id: character_id).first.normalBossesKilled
           return true
-        elsif battle_net_api.num_kills('heroic') > Progression.where(name: character_name, character_id: this_character_id).first.heroicBossesKilled
+        elsif battle_net_api.num_kills('heroic') > Progression.where(name: @progression, character_id: character_id).first.heroicBossesKilled
           return true
         end
       end
