@@ -31,21 +31,26 @@ Finished initial functionality of being bale to find basic information on any pl
 * Update README, Goals, Stories
 * Demo
 * Lessons Learned
-* Add functionality to track change over time in progression
 * Add more information to character printing
 * Add error prevention/recovery
 * Improve remove functionality
 
 <a name="Features"></a>
 ## 4. Features
-* Lookup a character on any server and get some basic information printed to the screen
+* Lookup a character on any server and print some information to the screen
+* Check progress on any raid for that character
+* Store that information in a database
+* Each time you store the information, BNI will alert you to any new progress since the last time you store the information
 
 <a name="Usage"></a>
 ## 5. Usage
 
-* From BattleNetInfo directory type `ruby bni.rb <character> <server>`
-* Capitalize the first letter in character name
-* Server is all lowercase
+* From BattleNetInfo directory type `./bni <character> <server>` to display character information
+* `./bni <character> <server> <raid>` to see raid progression
+* `./bni add <character> <server>` to add a character to the database
+* `./bni progression progression <character> <server> <raid>` to add a raid to that character in the database
+* `./bni list` to see everything in the database
+* `./bni remove <character>` to remove a character and all progressions related to that character
 
 <a name="license"></a>
 ## License
