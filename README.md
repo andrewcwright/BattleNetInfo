@@ -30,6 +30,7 @@ Implemented all of the initial functionality.
 
 * Add more information to character printing
 * Add error prevention/recovery
+* Improve interface
 
 <a name="Features"></a>
 ## 4. Features
