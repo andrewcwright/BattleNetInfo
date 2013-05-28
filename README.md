@@ -23,24 +23,20 @@ Battle.net is a server used by Blizzard Entertainment to host video games and pr
 <a name="project-status"></a>
 ## 2. Project Status
 
-Finished initial functionality of being bale to find basic information on any player.
+Implemented all of the initial functionality.
 
 <a name="todo-list"></a>
 ## 3. Todo List
 
-* Update README, Goals, Stories
-* Demo
-* Lessons Learned
 * Add more information to character printing
 * Add error prevention/recovery
-* Improve remove functionality
 
 <a name="Features"></a>
 ## 4. Features
 * Lookup a character on any server and print some information to the screen
 * Check progress on any raid for that character
 * Store that information in a database
-* Each time you store the information, BNI will alert you to any new progress since the last time you store the information
+* Each time you store the information, BNI will alert you to any new progress since the last time you stored the progression
 
 <a name="Usage"></a>
 ## 5. Usage
