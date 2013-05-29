@@ -11,7 +11,7 @@ Class: Shaman
 Race: Dwarf
 Gender: Male
 Level: 90
-Achievement Points: 8400
+Achievement Points: 8485
     block
     assert_equal(block, `./bni Andose kelthuzad`)
   end
@@ -25,7 +25,7 @@ Class: Shaman
 Race: Dwarf
 Gender: Male
 Level: 90
-Achievement Points: 8400
+Achievement Points: 8485
 ********** Dragon Soul **********
 
 Morchok:
