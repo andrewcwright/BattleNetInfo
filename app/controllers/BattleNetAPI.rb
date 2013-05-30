@@ -108,7 +108,7 @@ class BattleNetAPI
     time = time.to_s
     time = time.chomp("000")
     time = time.to_i
-    time = Time.at(time).to_formatted_s(:rfc822)
+    time = Time.at(time).getgm.to_formatted_s(:rfc822)
     time
   end
 

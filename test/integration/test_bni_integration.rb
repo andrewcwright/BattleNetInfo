@@ -11,65 +11,65 @@ Class: Shaman
 Race: Dwarf
 Gender: Male
 Level: 90
-Achievement Points: 8485
+Achievement Points: 8530
     block
     assert_equal(block, `./bni Andose kelthuzad`)
   end
 
   def test_progression_output
-#     block = <<-EOS
-# ********** Andose **********
-# Realm: Kel'Thuzad
-# Battlegroup: Nightfall
-# Class: Shaman
-# Race: Dwarf
-# Gender: Male
-# Level: 90
-# Achievement Points: 8485
-# ********** Dragon Soul **********
+    block = <<-EOS
+********** Andose **********
+Realm: Kel'Thuzad
+Battlegroup: Nightfall
+Class: Shaman
+Race: Dwarf
+Gender: Male
+Level: 90
+Achievement Points: 8530
+********** Dragon Soul **********
 
-# Morchok:
-# LFR Kills: 21 - Last Kill: Wed, 09 May 2012 14:28:01 -0500
-# Normal Kills: 4 - Last Kill: Wed, 09 May 2012 14:28:01 -0500
-# Heroic Kills: 28 - Last Kill: Wed, 15 Aug 2012 20:49:26 -0500
+Morchok:
+LFR Kills: 21 - Last Kill: Wed, 09 May 2012 19:28:01 +0000
+Normal Kills: 4 - Last Kill: Wed, 09 May 2012 19:28:01 +0000
+Heroic Kills: 28 - Last Kill: Thu, 16 Aug 2012 01:49:26 +0000
 
-# Warlord Zon'ozz:
-# LFR Kills: 21 - Last Kill: Wed, 09 May 2012 14:40:28 -0500
-# Normal Kills: 13 - Last Kill: Wed, 09 May 2012 14:40:28 -0500
-# Heroic Kills: 20 - Last Kill: Wed, 15 Aug 2012 21:14:14 -0500
+Warlord Zon'ozz:
+LFR Kills: 21 - Last Kill: Wed, 09 May 2012 19:40:28 +0000
+Normal Kills: 13 - Last Kill: Wed, 09 May 2012 19:40:28 +0000
+Heroic Kills: 20 - Last Kill: Thu, 16 Aug 2012 02:14:14 +0000
 
-# Yor'sahj the Unsleeping:
-# LFR Kills: 22 - Last Kill: Wed, 09 May 2012 14:56:10 -0500
-# Normal Kills: 11 - Last Kill: Wed, 09 May 2012 14:56:10 -0500
-# Heroic Kills: 22 - Last Kill: Wed, 15 Aug 2012 21:04:31 -0500
+Yor'sahj the Unsleeping:
+LFR Kills: 22 - Last Kill: Wed, 09 May 2012 19:56:10 +0000
+Normal Kills: 11 - Last Kill: Wed, 09 May 2012 19:56:10 +0000
+Heroic Kills: 22 - Last Kill: Thu, 16 Aug 2012 02:04:31 +0000
 
-# Hagara the Stormbinder:
-# LFR Kills: 21 - Last Kill: Wed, 09 May 2012 15:08:59 -0500
-# Normal Kills: 6 - Last Kill: Mon, 07 May 2012 17:45:43 -0500
-# Heroic Kills: 21 - Last Kill: Wed, 15 Aug 2012 21:23:09 -0500
+Hagara the Stormbinder:
+LFR Kills: 21 - Last Kill: Wed, 09 May 2012 20:08:59 +0000
+Normal Kills: 6 - Last Kill: Mon, 07 May 2012 22:45:43 +0000
+Heroic Kills: 21 - Last Kill: Thu, 16 Aug 2012 02:23:09 +0000
 
-# Ultraxion:
-# LFR Kills: 15 - Last Kill: Mon, 07 May 2012 17:45:43 -0500
-# Normal Kills: 12 - Last Kill: Mon, 07 May 2012 17:45:43 -0500
-# Heroic Kills: 21 - Last Kill: Wed, 15 Aug 2012 21:33:22 -0500
+Ultraxion:
+LFR Kills: 15 - Last Kill: Mon, 07 May 2012 22:45:43 +0000
+Normal Kills: 12 - Last Kill: Mon, 07 May 2012 22:45:43 +0000
+Heroic Kills: 21 - Last Kill: Thu, 16 Aug 2012 02:33:22 +0000
 
-# Warmaster Blackhorn:
-# LFR Kills: 14 - Last Kill: Mon, 07 May 2012 18:03:22 -0500
-# Normal Kills: 14 - Last Kill: Mon, 07 May 2012 18:03:22 -0500
-# Heroic Kills: 18 - Last Kill: Wed, 15 Aug 2012 21:41:11 -0500
+Warmaster Blackhorn:
+LFR Kills: 14 - Last Kill: Mon, 07 May 2012 23:03:22 +0000
+Normal Kills: 14 - Last Kill: Mon, 07 May 2012 23:03:22 +0000
+Heroic Kills: 18 - Last Kill: Thu, 16 Aug 2012 02:41:11 +0000
 
-# Spine of Deathwing:
-# LFR Kills: 12 - Last Kill: Fri, 30 Mar 2012 12:08:42 -0500
-# Normal Kills: 15 - Last Kill: Sun, 29 Apr 2012 21:52:40 -0500
-# Heroic Kills: 16 - Last Kill: Wed, 15 Aug 2012 21:54:35 -0500
+Spine of Deathwing:
+LFR Kills: 12 - Last Kill: Fri, 30 Mar 2012 17:08:42 +0000
+Normal Kills: 15 - Last Kill: Mon, 30 Apr 2012 02:52:40 +0000
+Heroic Kills: 16 - Last Kill: Thu, 16 Aug 2012 02:54:35 +0000
 
-# Madness of Deathwing:
-# LFR Kills: 12 - Last Kill: Fri, 30 Mar 2012 12:24:54 -0500
-# Normal Kills: 15 - Last Kill: Sun, 06 May 2012 23:52:13 -0500
-# Heroic Kills: 14 - Last Kill: Wed, 15 Aug 2012 22:22:09 -0500
+Madness of Deathwing:
+LFR Kills: 12 - Last Kill: Fri, 30 Mar 2012 17:24:54 +0000
+Normal Kills: 15 - Last Kill: Mon, 07 May 2012 04:52:13 +0000
+Heroic Kills: 14 - Last Kill: Thu, 16 Aug 2012 03:22:09 +0000
 
-#     EOS
-#     assert_equal(block, `./bni Andose kelthuzad "Dragon Soul"`)
+    EOS
+    assert_equal(block, `./bni Andose kelthuzad "Dragon Soul"`)
   end
 
 end
