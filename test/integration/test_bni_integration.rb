@@ -11,7 +11,7 @@ Class: Shaman
 Race: Dwarf
 Gender: Male
 Level: 90
-Achievement Points: 8530
+Achievement Points: 8550
     block
     assert_equal(block, `./bni Andose kelthuzad`)
   end
@@ -25,7 +25,7 @@ Class: Shaman
 Race: Dwarf
 Gender: Male
 Level: 90
-Achievement Points: 8530
+Achievement Points: 8550
 ********** Dragon Soul **********
 
 Morchok:
@@ -45,7 +45,7 @@ Heroic Kills: 22 - Last Kill: Thu, 16 Aug 2012 02:04:31 +0000
 
 Hagara the Stormbinder:
 LFR Kills: 21 - Last Kill: Wed, 09 May 2012 20:08:59 +0000
-Normal Kills: 6 - Last Kill: Mon, 07 May 2012 22:45:43 +0000
+Normal Kills: 11 - Last Kill: Wed, 09 May 2012 20:08:59 +0000
 Heroic Kills: 21 - Last Kill: Thu, 16 Aug 2012 02:23:09 +0000
 
 Ultraxion:
