@@ -23,6 +23,7 @@ Battle.net is a server used by Blizzard Entertainment to host video games and pr
 <a name="project-status"></a>
 ## 2. Project Status
 [![Build Status](https://travis-ci.org/andrewcwright/BattleNetInfo.png)](https://travis-ci.org/andrewcwright/BattleNetInfo)
+[![Code Climate](https://codeclimate.com/github/andrewcwright/BattleNetInfo.png)](https://codeclimate.com/github/andrewcwright/BattleNetInfo)
 
 Implemented all of the initial functionality.
 
