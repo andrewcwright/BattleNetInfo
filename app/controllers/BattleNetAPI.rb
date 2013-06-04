@@ -69,14 +69,14 @@ class BattleNetAPI
 
   def format_progression
     progression_data = get_progression['progression']['raids']
-    tot_progression = {}
+    this_progression = {}
     progression_entries = progression_data.length
     progression_entries.times do |index|
       if progression_data[index]['name'] == @progression
-        tot_progression = progression_data[index]
+        this_progression = progression_data[index]
       end
     end
-    tot_progression
+    this_progression
   end
 
   def print_progression
@@ -86,23 +86,41 @@ class BattleNetAPI
     format_progression << "********** #{progression["name"]} **********"
     format_progression << "\n\n"
     progression_entries.times do |index|
-      format_progression << "#{progression['bosses'][index]['name']}:\n"
-      format_progression << "LFR Kills: #{progression['bosses'][index]['lfrKills']}"
-      if !progression['bosses'][index]['lfrKills'].nil? and progression['bosses'][index]['lfrKills'] > 0
-        format_progression << " - Last Kill: #{time_converter(progression['bosses'][index]['lfrTimestamp'])}"
-      end
-      format_progression << "\nNormal Kills: #{progression['bosses'][index]['normalKills']}"
-      if !progression['bosses'][index]['normalKills'].nil? and progression['bosses'][index]['normalKills'] > 0
-        format_progression << " - Last Kill: #{time_converter(progression['bosses'][index]['normalTimestamp'])}"
-      end
-      format_progression << "\nHeroic Kills: #{progression['bosses'][index]['heroicKills']}"
-      if !progression['bosses'][index]['heroicKills'].nil? and progression['bosses'][index]['heroicKills'] > 0
-        format_progression << " - Last Kill: #{time_converter(progression['bosses'][index]['heroicTimestamp'])}"
-      end
-      format_progression << "\n\n"
+      bosses = progression['bosses'][index]
+      format_progression << "#{bosses['name']}:\n"
+      format_progression << format_kills("LFR", bosses)
+      format_progression << format_kills("Normal", bosses)
+      format_progression << format_kills("Heroic", bosses)
+      format_progression << "\n"
     end
     puts format_progression
   end
+
+  def format_kills game_mode, bosses
+    modes = {
+      "LFR" => "lfrKills",
+      "Normal" => "normalKills",
+      "Heroic" => "heroicKills"
+    }
+    kills = ""
+    kills << "#{game_mode} Kills: #{bosses[modes[game_mode]]}"
+    if !bosses['lfrKills'].nil? and bosses['lfrKills'] > 0
+      kills << " - Last Kill: "
+      time = bosses[timestamp_name(game_mode)]
+      kills << "#{time_converter(time)}"
+    end
+    kills << "\n"
+  end
+
+  def timestamp_name game_mode
+    timestamps = {
+      "LFR" => "lfrTimestamp",
+      "Normal" => "normalTimestamp",
+      "Heroic" => "heroicTimestamp"
+    }
+    timestamps[game_mode]
+  end
+
 
   def time_converter time
     time = time.to_s
