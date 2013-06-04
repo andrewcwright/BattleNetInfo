@@ -59,22 +59,20 @@ class BattleNetInfoController
     formatted_realm = formatted_character["realm"]
     if new_kills and Character.where(name: @name, realm: formatted_realm).exists?
       character_id = Character.where(name: @name, realm: formatted_realm).first.id
-      new_lfr_kills = battle_net_api.num_kills('lfr')
-      old_lfr_kills = Progression.where(name: @progression, character_id: character_id).first.lfrBossesKilled
-      new_normal_kills = battle_net_api.num_kills('normal')
-      old_normal_kills = Progression.where(name: @progression, character_id: character_id).first.normalBossesKilled
-      new_heroic_kills = battle_net_api.num_kills('heroic')
-      old_heroic_kills = Progression.where(name: @progression, character_id: character_id).first.heroicBossesKilled
-      puts "You have killed #{new_lfr_kills - old_lfr_kills} new bosses in LFR"
-      puts "You have killed #{new_normal_kills - old_normal_kills} new bosses in normal"
-      puts "You have killed #{new_heroic_kills - old_heroic_kills} new bosses in heroic"
+      print_new_kills(battle_net_api, formatted_realm, character_id)
       Progression.where(name: @progression, character_id: character_id).first.destroy
     else
       puts "Sorry! You have not killed any new bosses, QQ"
     end
+    character_id = Character.where(name: @name, realm: formatted_realm).first.id
+    raid_name = formatted_realm["name"]
+    store_progression_data(battle_net_api, character_id, raid_name)
+  end
+
+  def store_progression_data battle_net_api, character_id, raid_name
     progression_data = {
-      "character_id" => Character.where("name = ? AND realm = ?", @name, formatted_realm).first.id,
-      "name" => formatted_progression["name"],
+      "character_id" => character_id,
+      "name" => raid_name,
       "lfrBossesKilled" => battle_net_api.num_kills('lfr'),
       "normalBossesKilled" => battle_net_api.num_kills('normal'),
       "heroicBossesKilled" => battle_net_api.num_kills('heroic')
@@ -86,6 +84,19 @@ class BattleNetInfoController
     else
       puts "Failure: #{progression_db.errors.full_messages.join(", ")}"
     end
+  end
+
+  def print_new_kills battle_net_api, formatted_realm, character_id
+    progression = Progression.where(name: @progression, character_id: character_id)
+    new_lfr_kills = battle_net_api.num_kills('lfr')
+    old_lfr_kills = progression.first.lfrBossesKilled
+    new_normal_kills = battle_net_api.num_kills('normal')
+    old_normal_kills = progression.first.normalBossesKilled
+    new_heroic_kills = battle_net_api.num_kills('heroic')
+    old_heroic_kills = progression.first.heroicBossesKilled
+    puts "You have killed #{new_lfr_kills - old_lfr_kills} new bosses in LFR"
+    puts "You have killed #{new_normal_kills - old_normal_kills} new bosses in normal"
+    puts "You have killed #{new_heroic_kills - old_heroic_kills} new bosses in heroic"
   end
 
   def new_kills
