@@ -57,7 +57,8 @@ class BattleNetInfoController
     formatted_progression = battle_net_api.format_progression
     formatted_character = battle_net_api.format_character
     formatted_realm = formatted_character["realm"]
-    if new_kills and Character.where(name: @name, realm: formatted_realm).exists?
+    progress = new_kills(battle_net_api, formatted_realm)
+    if progress and Character.where(name: @name, realm: formatted_realm).exists?
       character_id = Character.where(name: @name, realm: formatted_realm).first.id
       print_new_kills(battle_net_api, formatted_realm, character_id)
       Progression.where(name: @progression, character_id: character_id).first.destroy
@@ -99,19 +100,16 @@ class BattleNetInfoController
     puts "You have killed #{new_heroic_kills - old_heroic_kills} new bosses in heroic"
   end
 
-  def new_kills
-    battle_net_api = BattleNetAPI.new(@name, @realm, @progression)
-    formatted_progression = battle_net_api.format_progression
-    formatted_character = battle_net_api.format_character
-    formatted_realm = formatted_character["realm"]
+  def new_kills battle_net_api, formatted_realm
     if Character.where(name: @name, realm: formatted_realm).exists?
       character_id = Character.where(name: @name, realm: formatted_realm).first.id
-      if Progression.where(name: @progression, character_id: character_id).exists?
-        if battle_net_api.num_kills('lfr') > Progression.where(name: @progression, character_id: character_id).first.lfrBossesKilled
+      progression = Progression.where(name: @progression, character_id: character_id)
+      if progression.exists?
+        if battle_net_api.num_kills('lfr') > progression.first.lfrBossesKilled
           return true
-        elsif battle_net_api.num_kills('normal') > Progression.where(name: @progression, character_id: character_id).first.normalBossesKilled
+        elsif battle_net_api.num_kills('normal') > progression.first.normalBossesKilled
           return true
-        elsif battle_net_api.num_kills('heroic') > Progression.where(name: @progression, character_id: character_id).first.heroicBossesKilled
+        elsif battle_net_api.num_kills('heroic') > progression.first.heroicBossesKilled
           return true
         end
       end
