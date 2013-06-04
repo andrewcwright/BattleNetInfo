@@ -65,7 +65,7 @@ class BattleNetInfoController
       puts "Sorry! You have not killed any new bosses, QQ"
     end
     character_id = Character.where(name: @name, realm: formatted_realm).first.id
-    raid_name = formatted_realm["name"]
+    raid_name = "#{formatted_progression["name"]}"
     store_progression_data(battle_net_api, character_id, raid_name)
   end
 
